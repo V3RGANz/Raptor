@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Raptor</string>
+
+    <string name="publication_date_placeholder">publication_date_placeholder</string>
+    <string name="incoming_button">INCOMING</string>
+    <string name="outgoing_button">OUTGOING</string>
+    <string name="friends_button">FRIENDS</string>
+    <string name="avatar_image_accessibility">avatar_image_accessibility</string>
+    <string name="notification_title_placeholder">notification_title_placeholder</string>
+    <string name="notification_summary_placeholder">notification_summary_placeholder</string>
+    <string name="name_friend_sender">name_friend_sender</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_basick">basick</string>
+    <string name="action_settings">action_settings</string>
+    <string name="notification_title">notification_title</string>
+    <string name="from_image_accessibility">from_image_accessibility</string>
+    <string name="notification_date">notification_date</string>
+    <string name="notification_full_text">notification_full_text</string>
+    <string name="notification_to">notification_to</string>
+    <string name="notification_from">notification_from</string>
+    <string name="date">Date:</string>
+    <string name="to">To:</string>
+    <string name="from">From:</string>
+    <string name="notification_time">notification_time</string>
+    <string name="time">Time:</string>
+</resources>
