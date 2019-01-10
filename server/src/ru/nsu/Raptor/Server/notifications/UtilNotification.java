@@ -1,5 +1,6 @@
 package ru.nsu.Raptor.Server.notifications;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -8,8 +9,9 @@ public class UtilNotification {
     //region Fields
 
     private String message;
-    private Date date;
+    private String date;
     private String sender;
+    private String title;
     private boolean read = false;
     private final int id;
     static private AtomicInteger MAX_NOTIFICATION_ID = new AtomicInteger( 0 );
@@ -24,6 +26,7 @@ public class UtilNotification {
         this.message = notification.message;
         this.date = notification.date;
         this.sender = notification.sender;
+        this.title = notification.title;
     }
 
     //region Getters
@@ -35,6 +38,7 @@ public class UtilNotification {
         notification.sender = sender;
         notification.read = read;
         notification.id = id;
+        notification.title = title;
         return notification;
     }
 

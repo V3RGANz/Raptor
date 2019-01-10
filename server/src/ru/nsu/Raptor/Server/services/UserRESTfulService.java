@@ -4,9 +4,11 @@ import ru.nsu.Raptor.Server.Exceptions.AuthException;
 import ru.nsu.Raptor.Server.Exceptions.IllegalOperationException;
 import ru.nsu.Raptor.Server.users.FriendsController;
 import ru.nsu.Raptor.Server.users.TokenController;
+import ru.nsu.Raptor.Server.users.User;
 import ru.nsu.Raptor.Server.users.UserController;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.UUID;
 
@@ -23,10 +25,11 @@ public class UserRESTfulService {
 
     // region Auth
 
-    @POST
+    @GET
     @Path("login")
+  //  @Produces(MediaType.APPLICATION_JSON)
     //returns UserSession
-    public Response login(@HeaderParam("login") String login, @HeaderParam("password") String password) {
+    public Response login(@QueryParam("login") String login, @QueryParam("password") String password) {
 
         if (login == null || password == null) {
             return Response.status( 400 ).entity( "There is no login or password" ).build();
@@ -45,16 +48,17 @@ public class UserRESTfulService {
 
     @Path("register")
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     //returns UserSession
-    public Response register(@HeaderParam("login") String login, @HeaderParam("password") String password) {
+    public Response register(User user) {
 
-        if (login == null || password == null) {
+        if (user.login == null || user.password == null) {
             return Response.status( 400 ).entity( "There is no login or password" ).build();
         }
 
         try {
             return Response.status( 200 )
-                    .entity( userController.register( login, password ) )
+                    .entity( userController.register( user.login, user.password ) )
                     .build();
         } catch (AuthException e) {
             return Response.status( e.getErrorCode() )

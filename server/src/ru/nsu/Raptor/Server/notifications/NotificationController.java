@@ -12,19 +12,16 @@ public class NotificationController {
         if (notifications != null) {
             Iterator<Map.Entry<Integer, UtilNotification>> it = notifications.entrySet().iterator();
             while (it.hasNext()) {
-                if (!it.next().getValue().isRemoved()) {
-                    notificationList.add( it.next().getValue().getNotification() );
-                } else {
-                    it.remove();
-                }
+                notificationList.add( it.next().getValue().getNotification() );
             }
-        } else {
-            throw new IllegalArgumentException();
         }
         return notificationList;
     }
 
     public void addNotification(int userID, UtilNotification notification) {
+        if(notificationsMap.get(userID) == null){
+            notificationsMap.put( userID,new ConcurrentHashMap<>(  ) );
+        }
         notificationsMap.get( userID ).put( notification.getID(), notification );
     }
 
@@ -44,6 +41,15 @@ public class NotificationController {
     }
 
     NotificationController() {
+        notificationsMap.put( 0, new ConcurrentHashMap<>() );
+        Notification notification = new Notification();
+        notification.title = "First notification";
+        notification.date = new GregorianCalendar( 2014, 12, 21 ).toString();
+        notification.message = "To do somethingTo do somethingTo do somethingTo do somethingTo do somethingTo do somethingTo do somethingTo do something";
+        notification.sender = "friend";
+        notification.id = 0;
+        notification.read = false;
+        notificationsMap.get( 0 ).put( 0, new UtilNotification( notification ) );
     }
 
     //endregion

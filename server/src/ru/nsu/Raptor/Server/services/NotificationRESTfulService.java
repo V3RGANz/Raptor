@@ -125,10 +125,10 @@ public class NotificationRESTfulService {
 
     }
 
-    @Path("users/{my_id}/notifications/outgoing")
+    @Path("users/{my_id}/notifications/outgoing/{receiver_id}")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response sendOutgoingNotification(@PathParam("my_id") int userId, @HeaderParam("receiver_id") Integer recieverID,
+    public Response sendOutgoingNotification(@PathParam("my_id") int userId, @PathParam("receiver_id") Integer recieverID,
                                          @HeaderParam("token") String token, Notification notification) {
 
         if (token == null) {
@@ -138,10 +138,10 @@ public class NotificationRESTfulService {
         if(recieverID == null){
             return Response.status( 400 ).entity( "There is no receiver" ).build();
         }
-
+/*
         if(!friendsController.isFriends( userId,recieverID )){
             return Response.status( 403 ).entity( "You are not friends" ).build();
-        }
+        }*/
         if (tokenController.tokenValid( userId, UUID.fromString( token ) )) {
             UtilNotification util = new UtilNotification( notification );
             outgoingNotificationController.addNotification( userId, util );
